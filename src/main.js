@@ -7,7 +7,10 @@ let wedo = document.querySelector(`#wedo`)
 
 
 inputBx.addEventListener ("keyup", function(event) {
-if (event.key == "Enter") {
+if(event.key == "Enter" && inputBx.value == `` ) {
+    return
+    }
+else if (event.key == "Enter") {
 addItem(this.value)
 this.value = ""
 }
@@ -32,11 +35,18 @@ listItem.querySelector(`#check`).addEventListener(`click`,()=>{
 })
 listItem.querySelector(`#modify`).addEventListener(`click`,()=>{
     listcontent.removeAttribute(`readonly`)
+    listcontent.style.border =`solid 2px rgb(175, 230, 237)`
+    listcontent.style.borderRadius = `5px`
+    listcontent.style.padding = `5px`
     listcontent.addEventListener ("keyup", function(event) {
-        if (event.key == "Enter") {
+        if(event.key == "Enter" && listcontent.value == `` ) {
+            return
+            }
+        else if (event.key == "Enter") {
             listcontent.value = listcontent.value
             listcontent.setAttribute(`readonly`,`readonly`)
             listItem.classList.remove(`done`)
+            listcontent.style.border =``
             
         }
         })  
